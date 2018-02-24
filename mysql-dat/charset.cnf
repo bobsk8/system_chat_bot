@@ -1,0 +1,4 @@
+[mysqld]
+character-set-server=utf8
+skip-locking
+skip-name-resolve
