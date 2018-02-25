@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Product } from "../../../model/product";
 import { ProductService } from "../../../service/product.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -7,6 +7,7 @@ import { AppService } from "../../../service/app.service";
 import { User } from "../../../model/user";
 import { CategoryService } from '../../../service/category.service';
 import { Category } from '../../../model/category';
+import { UploadService } from '../../../service/upload.service';
 
 
 
@@ -26,7 +27,9 @@ export class ProductCreateComponent implements OnInit {
     private productService: ProductService,
     private activeModal: NgbModal,
     private appService: AppService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private el: ElementRef,
+    private uploadService: UploadService
   ) { }
 
   ngOnInit() {
@@ -47,6 +50,7 @@ export class ProductCreateComponent implements OnInit {
   submit(product,modal){
     this.productService.create(product)
     .subscribe(d => {
+      this.upload(d.id);
       this.modalContent.title = 'Salvo com sucesso!'
       this.modalContent.body = 'Seu produto pode ser visualizado na tela de Lista Produtos';
       this.activeModal.open(modal).result
@@ -54,6 +58,19 @@ export class ProductCreateComponent implements OnInit {
           this.appService.redirect('/product/list');
         });
     });
+  }
+
+  upload(product_id: number) {
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+    let fileCount: number = inputEl.files.length;
+    let formData = new FormData();
+    if (fileCount > 0) {
+      formData.append('photo', inputEl.files.item(0));
+      this.uploadService.upload(formData, product_id)
+        .subscribe(data => {
+          console.log(data._body);
+        });
+    }
   }
 
 }

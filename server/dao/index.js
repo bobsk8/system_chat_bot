@@ -13,11 +13,16 @@ function server(config) {
         productDao  = sequelize.import('./productDao'),
         userDao     = sequelize.import('./userDao'),
         roleDao     = sequelize.import('./roleDao'),
-        categoryDao = sequelize.import('./categoryDao');
+        categoryDao = sequelize.import('./categoryDao'),
+        saleDao     = sequelize.import('./saleDao');
 
     //Relations
     userDao.belongsTo(roleDao);
     productDao.belongsTo(categoryDao);
+    userDao.hasMany(saleDao);
+    saleDao.belongsTo(userDao);
+    saleDao.belongsToMany(productDao, { through: 'product_sale'});    
+     
 
     sequelize
         .authenticate()

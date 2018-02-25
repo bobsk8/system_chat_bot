@@ -34,9 +34,6 @@ if (process.env.NODE_ENV === 'dev') {
     app.use(session({
         name: 'token',
         secret: 'KCiH6SNsPh0Rhb5J',
-        cookie: {
-            maxAge: 60 * 60 * 1000
-        },
         saveUninitialized: true,
         resave: false
     }));

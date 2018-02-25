@@ -5,7 +5,7 @@ const
 
 function uploadRouter(app) {    
 
-    app.route(path)
+    app.route(path + '/:id')
         .post(require('./upload-data'));
 }
 

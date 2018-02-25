@@ -6,6 +6,7 @@ export class Product {
         public name?: string,
         public category_id?: number,
         public category?: Category,
+        public photo?: string,
         public description?: string
     ){}
 }
