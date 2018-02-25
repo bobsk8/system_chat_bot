@@ -5,6 +5,7 @@ import { HomeComponent } from "./routes/home/home.component";
 import { ProductCreateComponent } from "./routes/product/create/product-create.component";
 import { LoginComponent } from "./routes/login/login.component";
 import { UserCreateComponent } from "./routes/user/create/user-create.component";
+import { CategoryCreateComponent } from './routes/category/category-create/category-create.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
@@ -14,6 +15,12 @@ const routes: Routes = [
       children: [
         { path: 'list', component: ProductListComponent },
         { path: 'create', component: ProductCreateComponent }
+      ]
+    },
+    {
+      path: 'category',
+      children: [        
+        { path: 'create', component: CategoryCreateComponent }
       ]
     },
     {

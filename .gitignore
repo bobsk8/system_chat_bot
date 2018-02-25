@@ -3,6 +3,7 @@
 /ssl_certs
 .idea
 /server/public
+/server/uploads
 .env
 /server/access.log
 

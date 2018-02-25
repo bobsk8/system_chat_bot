@@ -20,6 +20,7 @@ import { UserCreateComponent } from './routes/user/create/user-create.component'
 import { GoogleService } from './service/google.service';
 import { UploadService } from './service/upload.service';
 import { CategoryService } from './service/category.service';
+import { CategoryCreateComponent } from './routes/category/category-create/category-create.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CategoryService } from './service/category.service';
     ProductCreateComponent,
     MenuComponent,
     LoginComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,

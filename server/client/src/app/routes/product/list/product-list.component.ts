@@ -6,6 +6,10 @@ import { User } from "../../../model/user";
 import * as FileSaver from 'file-saver';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleService } from '../../../service/google.service';
+import { environment } from '../../../../environments/environment';
+import { CategoryService } from '../../../service/category.service';
+import { Category } from '../../../model/category';
+
 
 @Component({
   selector: 'app-product-list',
@@ -14,16 +18,19 @@ import { GoogleService } from '../../../service/google.service';
 })
 export class ProductListComponent implements OnInit {
 
+  photoURL: string = environment.photoURL;
   products: Product[] = [];
   productUpdate: Product = new Product();
   user: User = new User();
   closeResult: string;
+  categories: Category[] = [];
   msg: string = '';
 
   constructor(
     private productService: ProductService,
     private appService: AppService,
     private modalService: NgbModal,
+    private categoryService: CategoryService,
     private googleService: GoogleService
   ) { }
 
@@ -33,9 +40,14 @@ export class ProductListComponent implements OnInit {
         this.appService.redirect('');
       }
       this.user = data;
-    });
+      this.getCategory();
+      this.getProducts();
+    });    
+  }
 
-    this.getProducts();
+  getCategory(){
+    this.categoryService.getAll()
+    .subscribe(c => this.categories = c);
   }
 
   getProducts() {

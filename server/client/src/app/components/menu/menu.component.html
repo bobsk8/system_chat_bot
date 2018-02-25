@@ -13,6 +13,9 @@
                 <a class="nav-link" routerLink="/product/list/">Lista Produtos</a>
             </li>
             <li class="nav-item" [ngClass]="{'active': selected==3}" (click)="menu(3)">
+                    <a class="nav-link" routerLink="/category/create/">Criar Categorias</a>
+                </li>
+            <li class="nav-item" [ngClass]="{'active': selected==3}" (click)="menu(3)">
                 <a class="nav-link" routerLink="/product/create/">Criar Produtos</a>
             </li>                      
         </ul>

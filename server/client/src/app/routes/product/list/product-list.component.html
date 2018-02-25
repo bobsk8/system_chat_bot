@@ -1,11 +1,11 @@
 <app-menu></app-menu>
-
 <div class="container">
   <button class="btn btn-primary button" (click)="export()">Exportar</button>
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Id</th>
+        <th>Foto</th>
         <th>Nome</th>
         <th>Categoria</th>
         <th>Alterar</th>
@@ -15,6 +15,7 @@
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{product.id}}</td>
+        <td><input type="image" src="{{photoURL}}{{product.photo}}" style="width: 80px;height: 80px"></td>
         <td>{{product.name}}</td>
         <td>{{product.category?.name}}</td>
         <td><button class="btn btn-primary" (click)="updateBtn(product, contentUpdate)">Alterar</button></td>
@@ -38,12 +39,21 @@
 
 <ng-template #contentUpdate let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <label for="name">Nome:</label>
-      <input type="text" class="form-control" id="name" placeholder="Entre com o nome" [(ngModel)]="productUpdate.name" name="name">
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">        
-          </button>
+      <h1>Edição</h1>
+    </div>
+    <div class="modal-body">
+        <label for="name">Nome:</label>
+        <input type="text" class="form-control" id="name" placeholder="Entre com o nome" [(ngModel)]="productUpdate.name" name="name">
+        <label>Categoria:</label>
+      <select name="categoria" [(ngModel)]="productUpdate.category_id" class="form form-control">
+          <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}
+      </select>    
+      <label>Descrição:</label>
+      <input type="text" [(ngModel)]="productUpdate.description" class="form form-control"><br>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">        
+            </button>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click');update(content);">Fechar</button>
+      <button type="button" class="btn btn-primary" (click)="c('Close click');update(content);">Salvar</button>
     </div>
   </ng-template>
