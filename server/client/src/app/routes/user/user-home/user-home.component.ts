@@ -45,11 +45,8 @@ export class UserHomeComponent implements OnInit {
     this.setSession();    
   }
 
-  remove(product: Product){
-    let idx = this.productsCar.indexOf(product);
-    if(idx!=-1){
-      this.productsCar.splice(idx,1);
-    }
+  remove(id: number){
+    this.productsCar = this.productsCar.filter(p => p.id!=id);    
     this.setSession();
   }
 

@@ -1,0 +1,44 @@
+<app-user-menu></app-user-menu>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of productsCar;let idx=index">
+                <td>{{idx + 1}}</td>
+                <td>
+                    <input type="image" src="{{photoURL}}{{product.photo}}" style="width: 80px;height: 80px">
+                </td>
+                <td>{{product.name}}</td>
+                <td>{{product.category?.name}}</td>
+                <td>
+                    <a class="btn btn-danger" (click)="add(product)"><</a>
+                    <a class="btn btn-danger" (click)="remove(product)">></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #modal let-close="close">
+
+    <div class="modal-dialog">
+        <h4 class="modal-title">
+            {{modalContent.title}}
+        </h4>
+        <div class="modal-body">
+            <p>
+                {{modalContent.body}}
+            </p>
+        </div>
+        <button type="button" data-dismiss="modal" (click)="close()" class="btn btn-default">Continuar</button>
+    </div>
+
+</ng-template>

@@ -8,6 +8,9 @@ const SaleDaoModel = {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true
+  },
+  total: {
+    type: DataTypes.DECIMAL(10,2)
   }
 };
 

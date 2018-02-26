@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from '../../../service/app.service';
-import { ProductService } from '../../../service/product.service';
+import { Modal } from '../../../model/modal';
 import { User } from '../../../model/user';
 import { environment } from '../../../../environments/environment';
 import { Product } from '../../../model/product';
-import { Modal } from '../../../model/modal';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SaleService } from '../../../service/sale.service';
 
 @Component({
-  selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.css']
+  selector: 'app-user-buy',
+  templateUrl: './user-buy.component.html',
+  styleUrls: ['./user-buy.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class UserBuyComponent implements OnInit {
+
   photoURL: string = environment.photoURL;
   user: User = new User();
-  products: Product[] = [];
   productsCar: Product[] = [];
   modalContent = new Modal();
   
   constructor(
-    private productService: ProductService,
     private activeModal: NgbModal,
-    private appService: AppService
+    private appService: AppService,
+    private saleService: SaleService
   ) { }
 
   ngOnInit() {

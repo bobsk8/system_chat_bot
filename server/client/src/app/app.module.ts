@@ -18,12 +18,14 @@ import { AppService } from "./service/app.service";
 import { UserService } from "./service/user.service";
 import { UserCreateComponent } from './routes/user/create/user-create.component';
 import { GoogleService } from './service/google.service';
+import { SaleService } from './service/sale.service';
 import { UploadService } from './service/upload.service';
 import { CategoryService } from './service/category.service';
 import { CategoryCreateComponent } from './routes/admin/category/category-create/category-create.component';
 import { UserMenuComponent } from './components/user/user-menu/user-menu.component';
 import { UserHomeComponent } from './routes/user/user-home/user-home.component';
 import { ShoppingCartComponent } from './routes/user/shopping-cart/shopping-cart.component';
+import { UserBuyComponent } from './routes/user/user-buy/user-buy.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ShoppingCartComponent } from './routes/user/shopping-cart/shopping-cart
     CategoryCreateComponent,
     UserMenuComponent,
     UserHomeComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    UserBuyComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { ShoppingCartComponent } from './routes/user/shopping-cart/shopping-cart
     FileUploadModule,
     NgbModule.forRoot()
   ],
-  providers: [ProductService, UserService,AppService, GoogleService, UploadService, CategoryService],
+  providers: [ProductService, UserService,AppService, GoogleService, UploadService, CategoryService, SaleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
