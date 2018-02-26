@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../service/app.service';
-import { User } from '../../../model/user';
 import { ProductService } from '../../../service/product.service';
-import { Product } from '../../../model/product';
+import { User } from '../../../model/user';
 import { environment } from '../../../../environments/environment';
+import { Product } from '../../../model/product';
 
 @Component({
-  selector: 'app-user-home',
-  templateUrl: './user-home.component.html',
-  styleUrls: ['./user-home.component.css']
+  selector: 'app-shopping-cart',
+  templateUrl: './shopping-cart.component.html',
+  styleUrls: ['./shopping-cart.component.css']
 })
-export class UserHomeComponent implements OnInit {
-
+export class ShoppingCartComponent implements OnInit {
   photoURL: string = environment.photoURL;
   user: User = new User();
   products: Product[] = [];
@@ -28,21 +27,14 @@ export class UserHomeComponent implements OnInit {
         this.appService.redirect('');
       }
       this.user = data;
-      this.getProducts();
       this.getSession();
     });
   }
 
-  getProducts() {
-    this.productService.getAll()
-      .subscribe(products => {
-        this.products = products;
-      }, err => console.log(err));
-  }
-
-  add(product: Product){    
-    this.productsCar.push(product);
-    this.setSession();    
+  getSession(){
+    if(localStorage.getItem('productsCar')){
+      this.productsCar = JSON.parse(localStorage.getItem('productsCar'));
+    }
   }
 
   remove(product: Product){
@@ -58,9 +50,4 @@ export class UserHomeComponent implements OnInit {
     localStorage.setItem('productsCar',JSON.stringify(this.productsCar));
   }
 
-  getSession(){
-    if(localStorage.getItem('productsCar')){
-      this.productsCar = JSON.parse(localStorage.getItem('productsCar'));
-    }
-  }
 }

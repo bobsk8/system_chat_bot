@@ -23,6 +23,7 @@ import { CategoryService } from './service/category.service';
 import { CategoryCreateComponent } from './routes/admin/category/category-create/category-create.component';
 import { UserMenuComponent } from './components/user/user-menu/user-menu.component';
 import { UserHomeComponent } from './routes/user/user-home/user-home.component';
+import { ShoppingCartComponent } from './routes/user/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserHomeComponent } from './routes/user/user-home/user-home.component';
     UserCreateComponent,
     CategoryCreateComponent,
     UserMenuComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
