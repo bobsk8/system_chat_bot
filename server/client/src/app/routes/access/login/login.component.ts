@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../service/user.service";
-import { User } from "../../model/user";
-import { AppService } from "../../service/app.service";
+import { UserService } from "../../../service/user.service";
+import { User } from "../../../model/user";
+import { AppService } from "../../../service/app.service";
 
 @Component({
   selector: 'app-login',
@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
       if(d.login){
         if(d.role_id==1){
           this.appService.redirect('/home');
+        }else{
+          this.appService.redirect('/user/home');
         }        
       }else{
         alert('Login inválido')

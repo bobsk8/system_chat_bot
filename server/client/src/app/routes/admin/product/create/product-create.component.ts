@@ -1,13 +1,13 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Product } from "../../../model/product";
-import { ProductService } from "../../../service/product.service";
+import { Product } from "../../../../model/product";
+import { ProductService } from "../../../../service/product.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { Modal } from "../../../model/modal";
-import { AppService } from "../../../service/app.service";
-import { User } from "../../../model/user";
-import { CategoryService } from '../../../service/category.service';
-import { Category } from '../../../model/category';
-import { UploadService } from '../../../service/upload.service';
+import { Modal } from "../../../../model/modal";
+import { AppService } from "../../../../service/app.service";
+import { User } from "../../../../model/user";
+import { CategoryService } from '../../../../service/category.service';
+import { Category } from '../../../../model/category';
+import { UploadService } from '../../../../service/upload.service';
 
 
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Modal } from '../../../model/modal';
-import { Category } from '../../../model/category';
-import { User } from '../../../model/user';
+import { Modal } from '../../../../model/modal';
+import { Category } from '../../../../model/category';
+import { User } from '../../../../model/user';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AppService } from '../../../service/app.service';
-import { CategoryService } from '../../../service/category.service';
+import { AppService } from '../../../../service/app.service';
+import { CategoryService } from '../../../../service/category.service';
 
 @Component({
   selector: 'app-category-create',
@@ -19,7 +19,6 @@ export class CategoryCreateComponent implements OnInit {
   user: User = new User();
   categories: Category[] = [];
   categoryUpdate: Category = new Category();
-  msg: string;
 
   constructor(
     private activeModal: NgbModal,
@@ -41,8 +40,9 @@ export class CategoryCreateComponent implements OnInit {
     this.categoryService.update(this.categoryUpdate)
       .subscribe(data => {
         this.getCategory();        
-        this.categoryUpdate = new Category();
-        this.msg = 'Alterado com sucesso!';
+        this.categoryUpdate = new Category();        
+        this.modalContent.title = 'Alteração de categoria'
+        this.modalContent.body = 'Alterado com sucesso!';      
         this.open(content)
       }, err => console.log(err));
   }
@@ -55,7 +55,8 @@ export class CategoryCreateComponent implements OnInit {
   deleteBtn(category, content) {
     this.categoryService.delete(category)
       .subscribe(data => {
-        this.msg = 'Excluido com sucesso!';
+        this.modalContent.title = 'Exclusão de categoria'
+        this.modalContent.body = 'Excluido com sucesso!';
         this.open(content)
         this.getCategory();
       }, err => console.log(err))
@@ -69,6 +70,7 @@ export class CategoryCreateComponent implements OnInit {
       this.activeModal.open(modal).result
         .then(result => {
           this.category = new Category();
+          this.getCategory();
         });
     });
   }

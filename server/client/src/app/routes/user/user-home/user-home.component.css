@@ -1,0 +1,16 @@
+img {
+    width: 200px;
+    height: 180px;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+    display: block;
+}
+
+.btn.btn-primary {
+    color: blanchedalmond;
+}
+
+.btn.btn-primary:hover {
+    color: black;
+}

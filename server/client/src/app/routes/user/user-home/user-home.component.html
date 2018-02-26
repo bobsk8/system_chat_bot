@@ -1,0 +1,15 @@
+<app-user-menu></app-user-menu>
+<div class="container">
+    <div class="card-deck">
+        <div class="card" *ngFor="let product of products">
+            <img class="card-img-top" src="{{photoURL}}{{product.photo}}" alt="Card image cap">
+            <div class="card-block">
+                <h4 class="card-title">{{product.name}}</h4>
+                <p class="card-text">{{product.description}}</p>
+            </div>
+            <div class="card-footer">
+                <a (click)="buy(product.id)" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+    </div>
+</div>

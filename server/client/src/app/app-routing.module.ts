@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { ProductListComponent } from "./routes/product/list/product-list.component";
+import { ProductListComponent } from "./routes/admin/product/list/product-list.component";
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from "./routes/home/home.component";
-import { ProductCreateComponent } from "./routes/product/create/product-create.component";
-import { LoginComponent } from "./routes/login/login.component";
+import { HomeComponent } from "./routes/admin/home/home.component";
+import { ProductCreateComponent } from "./routes/admin/product/create/product-create.component";
+import { LoginComponent } from "./routes/access/login/login.component";
 import { UserCreateComponent } from "./routes/user/create/user-create.component";
-import { CategoryCreateComponent } from './routes/category/category-create/category-create.component';
+import { CategoryCreateComponent } from './routes/admin/category/category-create/category-create.component';
+import { UserHomeComponent } from './routes/user/user-home/user-home.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
     {
       path: 'user',
       children: [        
-        { path: 'create', component: UserCreateComponent }
+        { path: 'create', component: UserCreateComponent },
+        { path: 'home', component: UserHomeComponent }
       ]
     }
   ];

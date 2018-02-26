@@ -5,6 +5,8 @@
     <input type="text" [(ngModel)]="category.name" class="form form-control">
     <br>
     <button (click)="submit(category,modal)" class="btn btn-primary">Salvar</button>
+    <br>
+    <br>
 
     <table class="table table-striped">
         <thead>
@@ -21,21 +23,25 @@
                     <button class="btn btn-primary" (click)="updateBtn(cat, contentUpdate)">Alterar</button>
                 </td>
                 <td>
-                    <button class="btn btn-danger" (click)="deleteBtn(cat,content)">Excluir</button>
+                    <button class="btn btn-danger" (click)="deleteBtn(cat,modal)">Excluir</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">{{msg}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        </button>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Fechar</button>
+<ng-template #modal let-close="close">
+
+    <div class="modal-dialog">
+        <h4 class="modal-title">
+            {{modalContent.title}}
+        </h4>
+        <div class="modal-body">
+            <p>
+                {{modalContent.body}}
+            </p>
+        </div>
+        <button type="button" data-dismiss="modal" (click)="close()" class="btn btn-default">Continuar</button>
     </div>
 </ng-template>
 
@@ -51,6 +57,6 @@
         </button>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Close click');update(content);">Salvar</button>
+        <button type="button" class="btn btn-primary" (click)="c('Close click');update(modal);">Salvar</button>
     </div>
 </ng-template>

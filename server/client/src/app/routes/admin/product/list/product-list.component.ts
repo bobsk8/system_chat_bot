@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from "../../../service/product.service";
-import { Product } from "../../../model/product";
-import { AppService } from "../../../service/app.service";
-import { User } from "../../../model/user";
+import { ProductService } from "../../../../service/product.service";
+import { Product } from "../../../../model/product";
+import { AppService } from "../../../../service/app.service";
+import { User } from "../../../../model/user";
 import * as FileSaver from 'file-saver';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { GoogleService } from '../../../service/google.service';
-import { environment } from '../../../../environments/environment';
-import { CategoryService } from '../../../service/category.service';
-import { Category } from '../../../model/category';
+import { GoogleService } from '../../../../service/google.service';
+import { environment } from '../../../../../environments/environment';
+import { CategoryService } from '../../../../service/category.service';
+import { Category } from '../../../../model/category';
 
 
 @Component({

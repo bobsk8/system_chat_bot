@@ -1,18 +1,20 @@
 'use strict';
 
 const
-  path = '/api/v1/categories';
+  path = '/api/v1/categories',
+  adminChecker		= require('../middleware/admin'),
+  loginChecker		= require('../middleware/login');
 
 function categoryRouter(app) {
 
   app.route(path)
-    .get(require('./get-categories'))
-    .post(require('./create-category'));
+    .get(loginChecker,require('./get-categories'))
+    .post(adminChecker,require('./create-category'));
 
   app.route(path + '/:id')
-    .get(require('./get-category-by-id'))
-    .put(require('./edit-category'))
-    .delete(require('./delete-category'));
+    .get(loginChecker,require('./get-category-by-id'))
+    .put(adminChecker,require('./edit-category'))
+    .delete(adminChecker,require('./delete-category'));
 
 
 }
