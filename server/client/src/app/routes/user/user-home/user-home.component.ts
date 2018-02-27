@@ -4,6 +4,7 @@ import { User } from '../../../model/user';
 import { ProductService } from '../../../service/product.service';
 import { Product } from '../../../model/product';
 import { environment } from '../../../../environments/environment';
+import { Sale } from '../../../model/sale';
 
 @Component({
   selector: 'app-user-home',
@@ -15,7 +16,7 @@ export class UserHomeComponent implements OnInit {
   photoURL: string = environment.photoURL;
   user: User = new User();
   products: Product[] = [];
-  productsCar: Product[] = [];
+  sale: Sale = new Sale();
   
   constructor(
     private productService: ProductService,
@@ -40,24 +41,25 @@ export class UserHomeComponent implements OnInit {
       }, err => console.log(err));
   }
 
-  add(product: Product){    
-    this.productsCar.push(product);
+  add(product: Product){
+    this.sale.products = this.sale.products.filter(p => p.id!=product.id);    
+    this.sale.products.push(product);
     this.setSession();    
   }
 
   remove(id: number){
-    this.productsCar = this.productsCar.filter(p => p.id!=id);    
+    this.sale.products = this.sale.products.filter(p => p.id!=id);    
     this.setSession();
   }
 
   setSession(){
     localStorage.clear();
-    localStorage.setItem('productsCar',JSON.stringify(this.productsCar));
+    localStorage.setItem('productsCar',JSON.stringify(this.sale.products));
   }
 
   getSession(){
     if(localStorage.getItem('productsCar')){
-      this.productsCar = JSON.parse(localStorage.getItem('productsCar'));
+      this.sale.products = JSON.parse(localStorage.getItem('productsCar'));
     }
   }
 }

@@ -19,8 +19,8 @@
                 <td>{{product.name}}</td>
                 <td>{{product.category?.name}}</td>
                 <td>
-                    <a class="btn btn-danger" (click)="add(product)"><</a>
-                    <a class="btn btn-danger" (click)="remove(product)">></a>
+                    <a class="btn btn-danger" (click)="remove(product)"><</a>{{product.count}}
+                    <a class="btn btn-danger" (click)="add(product)">></a>
                 </td>
             </tr>
         </tbody>

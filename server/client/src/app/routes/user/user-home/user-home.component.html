@@ -1,5 +1,5 @@
 <app-user-menu></app-user-menu>
-{{productsCar.length}}
+
 <div class="container">
     <div class="card-deck">
         <div class="card" *ngFor="let product of products">
@@ -17,3 +17,7 @@
         </div>
     </div>
 </div>
+
+<div *ngFor="let prd of sale.products">
+        {{prd.name}}
+    </div>

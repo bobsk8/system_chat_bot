@@ -4,7 +4,7 @@ import { User } from './user';
 export class Sale {
     constructor(
         public user?: User,
-        public product?: Product[],
+        public products?: Product[],
         public total?: number
     ){}
 }
