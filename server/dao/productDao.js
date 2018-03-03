@@ -12,6 +12,10 @@ const productDaoModel = {
   name: {
     type: DataTypes.STRING
   },
+  quantity: {
+    type: DataTypes.INTEGER,
+    defaultValue: 1
+  },
   description: {
     type: DataTypes.STRING
   },

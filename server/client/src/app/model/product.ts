@@ -7,7 +7,7 @@ export class Product {
         public category_id?: number,
         public category?: Category,
         public photo?: string,
-        public count?: number,
+        public quantity?: number,
         public description?: string
     ){}
 }

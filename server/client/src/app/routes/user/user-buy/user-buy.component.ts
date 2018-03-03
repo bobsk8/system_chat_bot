@@ -41,21 +41,21 @@ export class UserBuyComponent implements OnInit {
     if(localStorage.getItem('productsCar')){
       this.productsCar = JSON.parse(localStorage.getItem('productsCar'));
       this.productsCar.forEach(p => {
-        if(!p.count){
-          p.count=1;
+        if(!p.quantity){
+          p.quantity=1;
         }
       })
     }
   }
 
   add(product: Product){
-    product.count+=+1;
+    product.quantity+=+1;
     this.setSession(); 
   }
 
   remove(product: Product,modal: any){
-    if(product.count>1){
-      product.count+=-1;
+    if(product.quantity>1){
+      product.quantity+=-1;
     }else{
       this.productsCar = this.productsCar.filter(p => p.id!=product.id);
     }
