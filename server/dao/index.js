@@ -10,19 +10,25 @@ function server(config) {
             config.dbHost
         ),
 
-        productDao  = sequelize.import('./productDao'),
-        userDao     = sequelize.import('./userDao'),
-        roleDao     = sequelize.import('./roleDao'),
-        categoryDao = sequelize.import('./categoryDao'),
-        saleDao     = sequelize.import('./saleDao');
+        productDao          = sequelize.import('./productDao'),
+        userDao             = sequelize.import('./userDao'),
+        roleDao             = sequelize.import('./roleDao'),
+        categoryDao         = sequelize.import('./categoryDao'),
+        saleDao             = sequelize.import('./saleDao'),
+        saleProductDao      = sequelize.import('./saleProductDao');
 
     //Relations
     userDao.belongsTo(roleDao);
     productDao.belongsTo(categoryDao);
-    userDao.hasMany(saleDao);
+    userDao.hasMany(saleDao, {
+        as: 'sales',
+        onDelete: 'CASCADE'}
+      );
     saleDao.belongsTo(userDao);
-    saleDao.belongsToMany(productDao, { through: 'product_sale'});    
-     
+    saleDao.belongsToMany(productDao, { through: saleProductDao });
+    productDao.belongsToMany(saleDao, { through: saleProductDao });
+    // saleProductDao.belongsTo(saleDao);
+    // saleProductDao.belongsTo(productDao);  
 
     sequelize
         .authenticate()
@@ -38,6 +44,8 @@ function server(config) {
         roleDao,
         productDao,
         categoryDao,
+        saleDao,
+        saleProductDao,
         userDao
     };
 
@@ -45,7 +53,9 @@ function server(config) {
         sequelize,
         productDao,
         roleDao,
+        saleProductDao,
         categoryDao,
+        saleDao,
         userDao
     };
 }

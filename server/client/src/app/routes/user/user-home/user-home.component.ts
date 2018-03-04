@@ -42,7 +42,9 @@ export class UserHomeComponent implements OnInit {
   }
 
   add(product: Product){
-    this.sale.products = this.sale.products.filter(p => p.id!=product.id);    
+    if(this.sale.products.length>0){
+      this.sale.products = this.sale.products.filter(p => p.id!=product.id);
+    }
     this.sale.products.push(product);
     this.setSession();    
   }

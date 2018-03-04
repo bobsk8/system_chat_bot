@@ -5,7 +5,8 @@ const
     userRouter = require('./user'),
     googleRouter = require('./google'),
     uploadRouter = require('./upload'),
-    categoryRouter = require('./category');
+    categoryRouter = require('./category'),
+    saleRouter = require('./sale');
 
 
 function routerAdapter(app) {
@@ -14,6 +15,7 @@ function routerAdapter(app) {
     googleRouter(app);
     uploadRouter(app);
     categoryRouter(app);
+    saleRouter(app);
 }
 
 module.exports = routerAdapter;

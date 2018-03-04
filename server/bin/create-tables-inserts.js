@@ -3,7 +3,7 @@ const
     config = require('config'),
     server = require('../dao/index'),
     roles = [{ id: 1, name: 'admin' }, { id: 2, name: 'user' }],
-    category = [{ id: 1, name: 'game' }, { id: 2, name: 'eletrodomestico' }, { id: 3, name: 'limpeza' }],
+    category = [{ id: 1, name: 'game' }, { id: 2, name: 'eletrodomestico' }, { id: 3, name: 'cozinha' }],
     user = { name: 'Administrador', username: 'admin', pass: 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', role_id: 1 };
 
 //Config server

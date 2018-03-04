@@ -8,9 +8,11 @@
     <label>Categoria:</label>
     <select name="categoria" [(ngModel)]="product.category_id" class="form form-control">
         <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}
-    </select>    
+    </select>
+    <label>Preço:</label>
+    <input type="number" [(ngModel)]="product.price" class="form form-control"><br>    
     <label>Descrição:</label>
-    <input type="text" [(ngModel)]="product.description" class="form form-control"><br>
+    <textarea [(ngModel)]="product.description" class="form form-control"></textarea><br>    
     <button (click)="submit(product,modal)" class="btn btn-primary">Salvar</button>
 </div>
 

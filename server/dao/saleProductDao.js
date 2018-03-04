@@ -3,24 +3,14 @@
 const
   DataTypes = require('sequelize').DataTypes;
 
-const productDaoModel = {
+const SaleProductDaoModel = {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true
   },
-  name: {
-    type: DataTypes.STRING
-  },
-  price: {
-    type: DataTypes.DOUBLE,
-    defaultValue: 1
-  },
-  description: {
-    type: DataTypes.STRING
-  },
-  photo: {
-    type: DataTypes.STRING
+  quantity: {
+    type: DataTypes.INTEGER.UNSIGNED
   }
 };
 
@@ -28,8 +18,8 @@ const productDaoModel = {
 //// Export //////
 module.exports = (sequelize) => {
   return sequelize.define(
-    'product',
-    productDaoModel,
+    'sale_product',
+    SaleProductDaoModel,
     {underscored: true}
   );
 };

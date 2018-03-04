@@ -34,6 +34,8 @@ export class UserBuyComponent implements OnInit {
       }
       this.user = data;
       this.getSession();
+      this.saleService.getAll()
+      .subscribe(s => console.log(s));
     });
   }
 
@@ -65,6 +67,14 @@ export class UserBuyComponent implements OnInit {
   setSession(){    
     localStorage.clear();
     localStorage.setItem('productsCar',JSON.stringify(this.productsCar));
+  }
+
+  buy(){
+    this.sale.products = this.productsCar;    
+    this.saleService.create(this.sale)
+    .subscribe(s => {
+      console.log(s)
+    });
   }
 
 }
