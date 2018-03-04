@@ -3,26 +3,19 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand">Dashboard</a>
+    <a class="navbar-brand">Sistema de vendas</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" [ngClass]="{'active': selected}" (click)="menu(1)">
                 <a class="nav-link" routerLink="/user/home">Home</a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': !selected}" (click)="menu(2)">
-                <a class="nav-link" routerLink="/user/shop/cart/">Carrinho</a>
-            </li>
-            <li class="nav-item" [ngClass]="{'active': selected==3}" (click)="menu(3)">
-                    <a class="nav-link" routerLink="/user/shop/buy">Comprar</a>
-                </li>
             <li class="nav-item" [ngClass]="{'active': selected==4}" (click)="menu(4)">
                 <a class="nav-link" routerLink="/user/shop">Compras</a>
             </li>                      
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div>
-            <img src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" style="width: 40px;height: 40px"><br>
-            {{products}}
+            <img routerLink="/user/shop/cart/" src="https://seeklogo.com/images/C/Carrinho_de_Compras-logo-F251151A71-seeklogo.com.png" style="width: 40px;height: 40px"><br>
             </div>
             <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Sair</button>
         </form>

@@ -64,16 +64,26 @@ export class UserBuyComponent implements OnInit {
     this.setSession();
   }
 
+  openModal(modal: any){
+    this.modalContent.title = 'Finalização de Compra'
+    this.modalContent.body = 'Seu compra foi finalizada com sucesso';
+    this.activeModal.open(modal).result
+      .then(result => {
+        this.appService.redirect('/user/home');
+      });
+  }
+
   setSession(){    
     localStorage.clear();
     localStorage.setItem('productsCar',JSON.stringify(this.productsCar));
   }
 
-  buy(){
+  buy(modal: any){
     this.sale.products = this.productsCar;    
     this.saleService.create(this.sale)
     .subscribe(s => {
-      console.log(s)
+      this.openModal(modal);
+      localStorage.clear();      
     });
   }
 

@@ -5,6 +5,8 @@ import { ProductService } from '../../../service/product.service';
 import { Product } from '../../../model/product';
 import { environment } from '../../../../environments/environment';
 import { Sale } from '../../../model/sale';
+import { Modal } from '../../../model/modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-home',
@@ -17,10 +19,12 @@ export class UserHomeComponent implements OnInit {
   user: User = new User();
   products: Product[] = [];
   sale: Sale = new Sale();
+  modalContent = new Modal();
   
   constructor(
     private productService: ProductService,
-    private appService: AppService
+    private appService: AppService,
+    private activeModal: NgbModal
   ) { }
 
   ngOnInit() {
@@ -29,8 +33,8 @@ export class UserHomeComponent implements OnInit {
         this.appService.redirect('');
       }
       this.user = data;
-      this.getProducts();
       this.getSession();
+      this.getProducts();
     });
   }
 
@@ -38,19 +42,46 @@ export class UserHomeComponent implements OnInit {
     this.productService.getAll()
       .subscribe(products => {
         this.products = products;
+        this.products.forEach(prd1 => {
+          this.sale.products.forEach(prd2 => {
+           if(prd1.id==prd2.id){
+            prd1.selected = true;
+           } 
+          });
+        });
       }, err => console.log(err));
   }
 
-  add(product: Product){
+  add(product: Product, modal: any){
     if(this.sale.products.length>0){
       this.sale.products = this.sale.products.filter(p => p.id!=product.id);
     }
+    this.addModal(modal);
+    product.selected = true;
     this.sale.products.push(product);
     this.setSession();    
   }
 
-  remove(id: number){
-    this.sale.products = this.sale.products.filter(p => p.id!=id);    
+  addModal(modal: any){
+    this.modalContent.title = 'Adicionar produto'
+    this.modalContent.body = 'Seu produto foi adicionado com sucesso ao carrinho';
+    this.activeModal.open(modal).result
+      .then(result => {
+      });
+  }
+
+  remeveModal(modal: any){
+    this.modalContent.title = 'Remover produto'
+    this.modalContent.body = 'Seu produto foi removido com sucesso do carrinho';
+    this.activeModal.open(modal).result
+      .then(result => {
+      });
+  }
+
+  remove(product: Product, modal: any){
+    product.selected = false;
+    this.sale.products = this.sale.products.filter(p => p.id!=product.id)
+    this.remeveModal(modal);    
     this.setSession();
   }
 

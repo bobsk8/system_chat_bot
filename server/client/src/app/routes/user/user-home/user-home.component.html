@@ -9,15 +9,29 @@
                 <p class="card-text">{{product.description}}</p>
             </div>
             <div class="card-footer">
-                <a (click)="add(product)" class="btn btn-primary">Adicionar no carrinho</a>
+                <a *ngIf="!product.selected" (click)="add(product, modal)" class="btn btn-primary">Adicionar no carrinho</a>
+                <a *ngIf="product.selected" class="btn btn-primary disabled">Adicionar no carrinho</a>
             </div>
             <div class="card-footer">
-                <a (click)="remove(product.id)" class="btn btn-primary">Remover do carrinho</a>
+                <a *ngIf="product.selected" (click)="remove(product, modal)" class="btn btn-primary">Remover do carrinho</a>
+                <a *ngIf="!product.selected" class="btn btn-primary disabled">Remover do carrinho</a>
             </div>
         </div>
     </div>
 </div>
 
-<div *ngFor="let prd of sale.products">
-        {{prd.name}}
+<ng-template #modal let-close="close">
+
+    <div class="modal-dialog">
+        <h4 class="modal-title">
+            {{modalContent.title}}
+        </h4>
+        <div class="modal-body">
+            <p>
+                {{modalContent.body}}
+            </p>
+        </div>
+        <button type="button" data-dismiss="modal" (click)="close()" class="btn btn-default">Continuar</button>
     </div>
+    
+</ng-template>
