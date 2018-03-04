@@ -1,0 +1,24 @@
+<app-user-menu></app-user-menu>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Produtos</th>
+                <th>Total</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sale of sales;let idx1=index">
+                <td>{{idx1 + 1}}</td>
+                <td>
+                  <tr *ngFor="let product of sale.products">
+                    <td>{{product.name}}</td>
+                    <td>{{product.sale_product.quantity}}</td>
+                  </tr>
+                </td>
+                <td>{{sale.total}}</td>                
+            </tr>
+        </tbody>
+    </table>    
+</div>

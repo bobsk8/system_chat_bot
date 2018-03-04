@@ -26,6 +26,7 @@ import { UserMenuComponent } from './components/user/user-menu/user-menu.compone
 import { UserHomeComponent } from './routes/user/user-home/user-home.component';
 import { ShoppingCartComponent } from './routes/user/shopping-cart/shopping-cart.component';
 import { UserBuyComponent } from './routes/user/user-buy/user-buy.component';
+import { UserShopComponent } from './routes/user/user-shop/user-shop.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserBuyComponent } from './routes/user/user-buy/user-buy.component';
     UserMenuComponent,
     UserHomeComponent,
     ShoppingCartComponent,
-    UserBuyComponent
+    UserBuyComponent,
+    UserShopComponent
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,9 @@ function userRouter(app) {
     app.route(path + '/user-logout')
         .get(loginChecker,require('./user-logout'))
 
+    app.route(path + '/sales')
+        .get(require('./user-sales'))
+
 }
 
 

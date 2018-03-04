@@ -10,13 +10,15 @@ import { AppService } from '../../../service/app.service';
 export class UserMenuComponent implements OnInit {
 
   selected:number = 1;
-  
+  products: number = 0;
+
   constructor(
     private userService: UserService,
     private appService: AppService
   ) { }
 
   ngOnInit() {
+    this.getSession();
   }
 
   logout(){
@@ -35,6 +37,14 @@ export class UserMenuComponent implements OnInit {
       this.selected = 2;
     }else if(item==3){      
       this.selected = 3;
+    }else if(item==4){      
+      this.selected = 4;
+    }
+  }
+
+  getSession(){
+    if(localStorage.getItem('productsCar')){
+      this.products = JSON.parse(localStorage.getItem('productsCar')).length;
     }
   }
 }

@@ -10,12 +10,20 @@ let
 
 saleModel = new dataModel(dao);
 
-saleModel.getAll = _getAll;
+saleModel.getAll      = _getAll;
+saleModel.getByUserId = _getByUserId;
 
 module.exports.saleModel = saleModel;
 
 function _getAll() {
   return this.DAO.findAll({
+    include: [{ model: models.productDao, as: 'products'}]
+  });
+}
+
+function _getByUserId(user_id) {
+  return this.DAO.findAll({
+    where: {user_id},
     include: [{ model: models.productDao, as: 'products'}]
   });
 }

@@ -9,6 +9,7 @@ import { CategoryCreateComponent } from './routes/admin/category/category-create
 import { UserHomeComponent } from './routes/user/user-home/user-home.component';
 import { ShoppingCartComponent } from './routes/user/shopping-cart/shopping-cart.component';
 import { UserBuyComponent } from './routes/user/user-buy/user-buy.component';
+import { UserShopComponent } from './routes/user/user-shop/user-shop.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
         { path: 'home', component: UserHomeComponent },
         { path: 'shop', children: [        
           { path: 'cart', component: ShoppingCartComponent },
-          { path: 'buy', component: UserBuyComponent }
+          { path: 'buy', component: UserBuyComponent },
+          { path: '', component: UserShopComponent }
         ] }
       ]
     }

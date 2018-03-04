@@ -3,6 +3,7 @@ import { User } from "../model/user";
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { ServiceModel } from "../model/service-model";
+import { Sale } from '../model/sale';
 
 @Injectable()
 export class UserService extends ServiceModel<User> {
@@ -11,6 +12,12 @@ export class UserService extends ServiceModel<User> {
     http: Http
   ) {
     super('v1/users', http);
+  }
+
+  getByUserId(): Observable<Sale[]> {
+    return this.http.get(this.apiEndpoint + '/sales', this.options)
+      .map(res => res.json())
+      .catch(err => Observable.throw(err));
   }
 
   getUserSession(): Observable<User> {
