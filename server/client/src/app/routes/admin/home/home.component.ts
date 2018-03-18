@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from "../../../service/app.service";
-import { User } from "../../../model/user";
+import { AppService } from '../../../service/app.service';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-home',
@@ -11,15 +11,15 @@ export class HomeComponent implements OnInit {
 
   user: User = new User();
   constructor(
-    private appService: AppService    
+    private appService: AppService
   ) { }
 
   ngOnInit() {
     this.appService.auth().subscribe(data => {
-      if (!data.login || data.role_id!=1) {
+      if (!data.login || data.role_id !== 1) {
         this.appService.redirect('');
       }
       this.user = data;
-    });    
+    });
   }
 }

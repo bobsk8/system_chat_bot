@@ -13,10 +13,10 @@ import { UserService } from '../../../service/user.service';
 })
 export class UserShopComponent implements OnInit {
 
-  photoURL: string = environment.photoURL;
+  photoURL = environment.photoURL;
   user: User = new User();
   sales: Sale[] = [];
-  
+
   constructor(
     private appService: AppService,
     private userService: UserService
@@ -28,11 +28,11 @@ export class UserShopComponent implements OnInit {
         this.appService.redirect('');
       }
       this.user = data;
-      this.getByUserId();            
+      this.getByUserId();
     });
   }
-  
-  getByUserId(){
+
+  getByUserId() {
     this.userService.getByUserId()
       .subscribe(s => this.sales = s);
   }

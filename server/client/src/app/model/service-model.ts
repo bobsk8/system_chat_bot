@@ -16,7 +16,7 @@ export class ServiceModel<T> {
   options = new RequestOptions({
     headers: this.headers,
     withCredentials: true,
-  })
+  });
 
   constructor(
     path: string,
@@ -31,7 +31,7 @@ export class ServiceModel<T> {
       .catch(err => Observable.throw(err));
   }
 
-  getById(id: number|string): Observable<T> {
+  getById(id: number | string): Observable<T> {
     return this.http.get(this.apiEndpoint + '/' + id, this.options)
       .map(res => res.json())
       .catch(err => Observable.throw(err));

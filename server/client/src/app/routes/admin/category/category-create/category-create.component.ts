@@ -27,52 +27,52 @@ export class CategoryCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.appService.auth().subscribe(data => {      
-      if (!data.login || data.role_id!=1) {        
+    this.appService.auth().subscribe(data => {
+      if (!data.login || data.role_id !== 1) {
         this.appService.redirect('');
-      }      
+      }
       this.user = data;
-      this.getCategory();            
+      this.getCategory();
     });
   }
 
   update(content: any) {
     this.categoryService.update(this.categoryUpdate)
       .subscribe(data => {
-        this.getCategory();        
-        this.categoryUpdate = new Category();        
-        this.modalContent.title = 'Alteração de categoria'
-        this.modalContent.body = 'Alterado com sucesso!';      
-        this.open(content)
+        this.getCategory();
+        this.categoryUpdate = new Category();
+        this.modalContent.title = 'Alteração de categoria';
+        this.modalContent.body = 'Alterado com sucesso!';
+        this.open(content);
       }, err => console.log(err));
   }
 
-  getCategory(){
+  getCategory() {
     this.categoryService.getAll()
-    .subscribe(c => this.categories = c);
+      .subscribe(c => this.categories = c);
   }
 
   deleteBtn(category, content) {
     this.categoryService.delete(category)
       .subscribe(data => {
-        this.modalContent.title = 'Exclusão de categoria'
+        this.modalContent.title = 'Exclusão de categoria';
         this.modalContent.body = 'Excluido com sucesso!';
-        this.open(content)
+        this.open(content);
         this.getCategory();
-      }, err => console.log(err))
+      }, err => console.log(err));
   }
 
-  submit(category,modal){
+  submit(category, modal) {
     this.categoryService.create(category)
-    .subscribe(d => {      
-      this.modalContent.title = 'Salvo com sucesso!'
-      this.modalContent.body = 'Sua categoria foi salva com sucesso!';
-      this.activeModal.open(modal).result
-        .then(result => {
-          this.category = new Category();
-          this.getCategory();
-        });
-    });
+      .subscribe(d => {
+        this.modalContent.title = 'Salvo com sucesso!';
+        this.modalContent.body = 'Sua categoria foi salva com sucesso!';
+        this.activeModal.open(modal).result
+          .then(result => {
+            this.category = new Category();
+            this.getCategory();
+          });
+      });
   }
 
   updateBtn(category, contentUpdate) {

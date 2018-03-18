@@ -6,7 +6,7 @@ export class Sale {
         public user?: User,
         public products?: Product[],
         public total?: number
-    ){
+    ) {
         this.products = [];
     }
 }

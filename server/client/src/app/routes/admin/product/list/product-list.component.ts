@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from "../../../../service/product.service";
-import { Product } from "../../../../model/product";
-import { AppService } from "../../../../service/app.service";
-import { User } from "../../../../model/user";
 import * as FileSaver from 'file-saver';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleService } from '../../../../service/google.service';
 import { environment } from '../../../../../environments/environment';
 import { CategoryService } from '../../../../service/category.service';
 import { Category } from '../../../../model/category';
+import { Product } from '../../../../model/product';
+import { User } from '../../../../model/user';
+import { ProductService } from '../../../../service/product.service';
+import { AppService } from '../../../../service/app.service';
 
 
 @Component({
@@ -18,13 +18,13 @@ import { Category } from '../../../../model/category';
 })
 export class ProductListComponent implements OnInit {
 
-  photoURL: string = environment.photoURL;
+  photoURL = environment.photoURL;
   products: Product[] = [];
   productUpdate: Product = new Product();
   user: User = new User();
-  closeResult: string;
+  closeResult;
   categories: Category[] = [];
-  msg: string = '';
+  msg = '';
 
   constructor(
     private productService: ProductService,
@@ -36,18 +36,18 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.appService.auth().subscribe(data => {
-      if (!data.login || data.role_id!=1) {
+      if (!data.login || data.role_id !== 1) {
         this.appService.redirect('');
       }
       this.user = data;
       this.getCategory();
       this.getProducts();
-    });    
+    });
   }
 
-  getCategory(){
+  getCategory() {
     this.categoryService.getAll()
-    .subscribe(c => this.categories = c);
+      .subscribe(c => this.categories = c);
   }
 
   getProducts() {
@@ -60,20 +60,20 @@ export class ProductListComponent implements OnInit {
   export() {
     this.productService.export()
       .subscribe(d => {
-        this.downloadFile(d)
-      })
+        this.downloadFile(d);
+      });
   }
 
   setSheets() {
     this.googleService.setSheets(this.products)
       .subscribe(d => {
-        alert('Foi')
-      })
+        alert('Foi');
+      });
   }
 
   downloadFile(d) {
-    let blob = d.blob();
-    let filename = 'report.xlsx';
+    const blob = d.blob();
+    const filename = 'report.xlsx';
     FileSaver.saveAs(blob, filename);
   }
 
@@ -104,9 +104,9 @@ export class ProductListComponent implements OnInit {
     this.productService.delete(product)
       .subscribe(data => {
         this.msg = 'Excluido com sucesso!';
-        this.open(content)
+        this.open(content);
         this.getProducts();
-      }, err => console.log(err))
+      }, err => console.log(err));
   }
 
   update(content: any) {
@@ -115,7 +115,7 @@ export class ProductListComponent implements OnInit {
         this.getProducts();
         this.productUpdate = new Product();
         this.msg = 'Alterado com sucesso!';
-        this.open(content)
+        this.open(content);
       }, err => console.log(err));
   }
 

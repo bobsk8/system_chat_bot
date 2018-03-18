@@ -2,20 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingModule } from 'ngx-loading';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload/';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './routes/admin/product/list/product-list.component';
-import { ProductService } from "./service/product.service";
+import { ProductService } from './service/product.service';
 import { HomeComponent } from './routes/admin/home/home.component';
 import { ProductCreateComponent } from './routes/admin/product/create/product-create.component';
 import { MenuComponent } from './components/admin/menu/menu.component';
 import { LoginComponent } from './routes/access/login/login.component';
-import { AppService } from "./service/app.service";
-import { UserService } from "./service/user.service";
+import { AppService } from './service/app.service';
+import { UserService } from './service/user.service';
 import { UserCreateComponent } from './routes/user/create/user-create.component';
 import { GoogleService } from './service/google.service';
 import { SaleService } from './service/sale.service';
@@ -53,7 +53,7 @@ import { UserShopComponent } from './routes/user/user-shop/user-shop.component';
     FileUploadModule,
     NgbModule.forRoot()
   ],
-  providers: [ProductService, UserService,AppService, GoogleService, UploadService, CategoryService, SaleService],
+  providers: [ProductService, UserService, AppService, GoogleService, UploadService, CategoryService, SaleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

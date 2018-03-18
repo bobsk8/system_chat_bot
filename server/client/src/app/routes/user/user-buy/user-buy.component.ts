@@ -15,12 +15,12 @@ import { Sale } from '../../../model/sale';
 })
 export class UserBuyComponent implements OnInit {
 
-  photoURL: string = environment.photoURL;
+  photoURL = environment.photoURL;
   user: User = new User();
   productsCar: Product[] = [];
   modalContent = new Modal();
   sale: Sale = new Sale();
-  
+
   constructor(
     private activeModal: NgbModal,
     private appService: AppService,
@@ -35,37 +35,37 @@ export class UserBuyComponent implements OnInit {
       this.user = data;
       this.getSession();
       this.saleService.getAll()
-      .subscribe(s => console.log(s));
+        .subscribe(s => console.log(s));
     });
   }
 
-  getSession(){
-    if(localStorage.getItem('productsCar')){
+  getSession() {
+    if (localStorage.getItem('productsCar')) {
       this.productsCar = JSON.parse(localStorage.getItem('productsCar'));
       this.productsCar.forEach(p => {
-        if(!p.quantity){
-          p.quantity=1;
+        if (!p.quantity) {
+          p.quantity = 1;
         }
-      })
+      });
     }
   }
 
-  add(product: Product){
-    product.quantity+=+1;
-    this.setSession(); 
+  add(product: Product) {
+    product.quantity += +1;
+    this.setSession();
   }
 
-  remove(product: Product,modal: any){
-    if(product.quantity>1){
-      product.quantity+=-1;
-    }else{
-      this.productsCar = this.productsCar.filter(p => p.id!=product.id);
+  remove(product: Product, modal: any) {
+    if (product.quantity > 1) {
+      product.quantity += -1;
+    } else {
+      this.productsCar = this.productsCar.filter(p => p.id !== product.id);
     }
     this.setSession();
   }
 
-  openModal(modal: any){
-    this.modalContent.title = 'Finalização de Compra'
+  openModal(modal: any) {
+    this.modalContent.title = 'Finalização de Compra';
     this.modalContent.body = 'Seu compra foi finalizada com sucesso';
     this.activeModal.open(modal).result
       .then(result => {
@@ -73,18 +73,18 @@ export class UserBuyComponent implements OnInit {
       });
   }
 
-  setSession(){    
+  setSession() {
     localStorage.clear();
-    localStorage.setItem('productsCar',JSON.stringify(this.productsCar));
+    localStorage.setItem('productsCar', JSON.stringify(this.productsCar));
   }
 
-  buy(modal: any){
-    this.sale.products = this.productsCar;    
+  buy(modal: any) {
+    this.sale.products = this.productsCar;
     this.saleService.create(this.sale)
-    .subscribe(s => {
-      this.openModal(modal);
-      localStorage.clear();      
-    });
+      .subscribe(s => {
+        this.openModal(modal);
+        localStorage.clear();
+      });
   }
 
 }

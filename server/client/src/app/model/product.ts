@@ -8,10 +8,10 @@ export class Product {
         public category?: Category,
         public photo?: string,
         public price?: number,
-        public selected?:boolean,
+        public selected?: boolean,
         public quantity?: number,
         public description?: string
-    ){
+    ) {
         this.selected = false;
     }
 }

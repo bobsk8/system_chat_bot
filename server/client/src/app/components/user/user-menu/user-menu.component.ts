@@ -9,8 +9,8 @@ import { AppService } from '../../../service/app.service';
 })
 export class UserMenuComponent implements OnInit {
 
-  selected:number = 1;
-  products: number = 0;
+  selected = 1;
+  products = 0;
 
   constructor(
     private userService: UserService,
@@ -21,29 +21,29 @@ export class UserMenuComponent implements OnInit {
     this.getSession();
   }
 
-  logout(){
+  logout() {
     this.userService.logout()
-    .subscribe(d => {
-      if(d.success){
-        this.appService.redirect('');
-      }
-    })
+      .subscribe(d => {
+        if (d.success) {
+          this.appService.redirect('');
+        }
+      });
   }
 
-  menu(item: number){
-    if(item==1){
+  menu(item: number) {
+    if (item === 1) {
       this.selected = 1;
-    }else if(item==2){      
+    } else if (item === 2) {
       this.selected = 2;
-    }else if(item==3){      
+    } else if (item === 3) {
       this.selected = 3;
-    }else if(item==4){      
+    } else if (item === 4) {
       this.selected = 4;
     }
   }
 
-  getSession(){
-    if(localStorage.getItem('productsCar')){
+  getSession() {
+    if (localStorage.getItem('productsCar')) {
       this.products = JSON.parse(localStorage.getItem('productsCar')).length;
     }
   }

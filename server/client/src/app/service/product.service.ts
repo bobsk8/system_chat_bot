@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Rx';
 
 
 @Injectable()
-export class ProductService extends ServiceModel<Product> {  
+export class ProductService extends ServiceModel<Product> {
 
   constructor(
     http: Http
@@ -15,7 +15,7 @@ export class ProductService extends ServiceModel<Product> {
   }
 
   export(): Observable<ResponseContentType.Blob> {
-    return this.http.get(this.apiEndpoint + '/export-products', { responseType: ResponseContentType.Blob })      
+    return this.http.get(this.apiEndpoint + '/export-products', { responseType: ResponseContentType.Blob })
       .catch(err => Observable.throw(err));
   }
 

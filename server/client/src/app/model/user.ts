@@ -5,5 +5,5 @@ export class User {
         public pass?: string,
         public role_id?: number,
         public login?: boolean
-    ){}
+    ) { }
 }

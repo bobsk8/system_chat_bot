@@ -18,7 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   products: Product[] = [];
   productsCar: Product[] = [];
   modalContent = new Modal();
-  
+
   constructor(
     private productService: ProductService,
     private activeModal: NgbModal,
@@ -35,28 +35,28 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  getSession(){
-    if(localStorage.getItem('productsCar')){
+  getSession() {
+    if (localStorage.getItem('productsCar')) {
       this.productsCar = JSON.parse(localStorage.getItem('productsCar'));
     }
   }
 
-  remove(product: Product,modal: any){
-    let idx = this.productsCar.indexOf(product);
-    if(idx!=-1){
-      this.productsCar.splice(idx,1);
+  remove(product: Product, modal: any) {
+    const idx = this.productsCar.indexOf(product);
+    if (idx !== -1) {
+      this.productsCar.splice(idx, 1);
     }
-      this.modalContent.title = 'Remover produto'
-      this.modalContent.body = 'Seu produto foi removido com sucesso do carrinho';
-      this.activeModal.open(modal).result
-        .then(result => {
-        });
+    this.modalContent.title = 'Remover produto';
+    this.modalContent.body = 'Seu produto foi removido com sucesso do carrinho';
+    this.activeModal.open(modal).result
+      .then(result => {
+      });
     this.setSession();
   }
 
-  setSession(){
+  setSession() {
     localStorage.clear();
-    localStorage.setItem('productsCar',JSON.stringify(this.productsCar));
+    localStorage.setItem('productsCar', JSON.stringify(this.productsCar));
   }
 
 }

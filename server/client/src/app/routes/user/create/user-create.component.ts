@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../../../model/user";
-import { UserService } from "../../../service/user.service";
-import { AppService } from "../../../service/app.service";
-import { Modal } from "../../../model/modal";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { User } from '../../../model/user';
+import { UserService } from '../../../service/user.service';
+import { AppService } from '../../../service/app.service';
+import { Modal } from '../../../model/modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create',
@@ -27,7 +27,7 @@ export class UserCreateComponent implements OnInit {
     this.userService.create(this.user)
       .subscribe(d => {
         if (d.success) {
-          this.openSuccessModal(modal)
+          this.openSuccessModal(modal);
         } else {
           this.openFailModal(modal);
         }
@@ -35,7 +35,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   openSuccessModal(modal) {
-    this.modalContent.title = 'Criado com sucesso!'
+    this.modalContent.title = 'Criado com sucesso!';
     this.modalContent.body = 'Você será redirecionado para tela de login.';
     this.activeModal.open(modal).result
       .then(result => {
@@ -44,7 +44,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   openFailModal(modal) {
-    this.modalContent.title = 'Erro!'
+    this.modalContent.title = 'Erro!';
     this.modalContent.body = 'ocorreu um problema ao salvar o usuário. Por favor, tente novamente.';
     this.activeModal.open(modal).result
       .then(result => {

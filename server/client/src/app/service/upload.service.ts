@@ -12,7 +12,7 @@ export class UploadService extends ServiceModel<any> {
     super('v1/uploads', http);
   }
 
-  upload(formdata: FormData,product_id: number): Observable<any> {
+  upload(formdata: FormData, product_id: number): Observable<any> {
     return this.http.post(this.apiEndpoint + '/' + product_id, formdata)
       .catch(err => Observable.throw(err));
   }

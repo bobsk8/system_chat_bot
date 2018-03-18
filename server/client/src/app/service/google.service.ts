@@ -14,7 +14,7 @@ export class GoogleService extends ServiceModel<Product> {
   }
 
   setSheets(datas: Product[]): Observable<any> {
-    return this.http.post(this.apiEndpoint + '/set-datas',datas, this.options)
+    return this.http.post(this.apiEndpoint + '/set-datas', datas, this.options)
       .map(res => res.json())
       .catch(err => Observable.throw(err));
   }
