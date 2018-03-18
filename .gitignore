@@ -6,4 +6,4 @@
 /server/uploads
 .env
 /server/access.log
-
+/server/package-lock.json
